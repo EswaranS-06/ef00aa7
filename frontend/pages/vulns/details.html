@@ -64,48 +64,72 @@
 
         <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 2rem;">
             <!-- Left Content -->
+            <!-- Left Content: Tabbed Interface -->
             <div>
-                <div class="card" style="margin-bottom: 2rem;">
-                    <div
-                        style="display: flex; gap: 2rem; border-bottom: 1px solid var(--glass-border); padding-bottom: 1rem; margin-bottom: 1.5rem;">
-                        <div
-                            style="font-weight: 600; color: var(--text-main); border-bottom: 2px solid var(--primary); padding-bottom: 1rem; margin-bottom: -1.1rem;">
-                            Description</div>
-                        <div style="color: var(--text-muted); cursor: pointer;">Reproduction</div>
-                        <div style="color: var(--text-muted); cursor: pointer;">Impact</div>
-                        <div style="color: var(--text-muted); cursor: pointer;">Remediation</div>
+                <div class="card" style="padding: 0; min-height: 500px;">
+                    <div class="tab-container">
+                        <button class="tab-btn tab-active" onclick="showTab(event, 'desc')">Description</button>
+                        <button class="tab-btn" onclick="showTab(event, 'steps')">Steps</button>
+                        <button class="tab-btn" onclick="showTab(event, 'impact')">Impact</button>
+                        <button class="tab-btn" onclick="showTab(event, 'rec')">Recommendation</button>
+                        <button class="tab-btn" onclick="showTab(event, 'evidence')">Evidence</button>
                     </div>
 
-                    <div style="line-height: 1.8; color: var(--text-muted);">
-                        <p style="margin-bottom: 1rem;">
-                            The application is vulnerable to SQL Injection via the 'username' parameter in the
-                            '/api/login' endpoint.
-                            The input is not properly sanitized before being used in a SQL query, allowing an attacker
-                            to manipulate the query structure.
-                        </p>
-                        <p>
-                            By injecting a payload such as <code>' OR '1'='1</code>, an attacker can bypass
-                            authentication and log in as the first user in the database (usually the administrator).
-                        </p>
-                    </div>
-                </div>
+                    <div style="padding: 2rem;">
+                        <!-- Description Tab -->
+                        <div id="desc" class="tab-content">
+                            <p style="color: var(--text-muted); line-height: 1.8;">
+                                The application is vulnerable to SQL Injection via the 'username' parameter in the
+                                '/api/login' endpoint. The input is not properly sanitized before being used in a SQL
+                                query, allowing an attacker to manipulate the query structure.
+                            </p>
+                        </div>
 
-                <!-- Evidence Carousel (Mock) -->
-                <h3 style="margin-bottom: 1rem;">Evidence</h3>
-                <div class="card" style="padding: 1rem;">
-                    <div
-                        style="height: 300px; background: #000; border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center; position: relative;">
-                        <!-- Mock Image -->
-                        <div style="color: var(--text-muted);">[ Screenshot of SQLMap Output ]</div>
+                        <!-- Steps Tab -->
+                        <div id="steps" class="tab-content" style="display: none;">
+                            <ol style="color: var(--text-muted); line-height: 1.8; margin-left: 1.5rem;">
+                                <li>Navigate to the Login Page.</li>
+                                <li>Enter the payload <code>' OR '1'='1</code> in the Username field.</li>
+                                <li>Enter any password.</li>
+                                <li>Observe that you are logged in as Administrator.</li>
+                            </ol>
+                        </div>
 
-                        <button
-                            style="position: absolute; left: 1rem; background: rgba(0,0,0,0.5); color: white; border: none; padding: 1rem; border-radius: 50%; cursor: pointer;">
-                            <i class="fa-solid fa-chevron-left"></i>
-                        </button>
-                        <button
-                            style="position: absolute; right: 1rem; background: rgba(0,0,0,0.5); color: white; border: none; padding: 1rem; border-radius: 50%; cursor: pointer;">
-                            <i class="fa-solid fa-chevron-right"></i>
-                        </button>
+                        <!-- Impact Tab -->
+                        <div id="impact" class="tab-content" style="display: none;">
+                            <p style="color: var(--text-muted); line-height: 1.8;">
+                                An attacker can bypass authentication, access sensitive user data, modify database
+                                records,
+                                or potentially gain full administrative access to the application.
+                            </p>
+                        </div>
+
+                        <!-- Recommendation Tab -->
+                        <div id="rec" class="tab-content" style="display: none;">
+                            <p style="color: var(--text-muted); line-height: 1.8;">
+                                Use Parameterized Queries (Prepared Statements) for all database access. Ensure that
+                                input
+                                validation is performed on the server side.
+                            </p>
+                        </div>
+
+                        <!-- Evidence Tab -->
+                        <div id="evidence" class="tab-content" style="display: none;">
+                            <div
+                                style="height: 300px; background: #000; border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center; position: relative;">
+                                <!-- Mock Image -->
+                                <div style="color: var(--text-muted);">[ Screenshot of SQLMap Output ]</div>
+
+                                <button
+                                    style="position: absolute; left: 1rem; background: rgba(0,0,0,0.5); color: white; border: none; padding: 1rem; border-radius: 50%; cursor: pointer;">
+                                    <i class="fa-solid fa-chevron-left"></i>
+                                </button>
+                                <button
+                                    style="position: absolute; right: 1rem; background: rgba(0,0,0,0.5); color: white; border: none; padding: 1rem; border-radius: 50%; cursor: pointer;">
+                                    <i class="fa-solid fa-chevron-right"></i>
+                                </button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -136,3 +160,16 @@
 
     </main>
 </div>
+
+<script>
+    function showTab(e, tabId) {
+        // Hide all contents
+        document.querySelectorAll('.tab-content').forEach(el => el.style.display = 'none');
+        // Remove active class
+        document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('tab-active'));
+
+        // Show selected
+        document.getElementById(tabId).style.display = 'block';
+        e.target.classList.add('tab-active');
+    }
+</script>

@@ -71,6 +71,16 @@
                 </div>
             </div>
 
+            <div class="card stat-card" style="border-left: 4px solid var(--warning);">
+                <div class="stat-icon" style="background: rgba(245, 166, 35, 0.1); color: var(--warning);">
+                    <i class="fa-solid fa-triangle-exclamation"></i>
+                </div>
+                <div>
+                    <h3 style="font-size: 2rem; margin: 0;">24</h3>
+                    <p style="color: var(--text-muted);">Open Vulns</p>
+                </div>
+            </div>
+
             <div class="card stat-card" style="border-left: 4px solid var(--danger);">
                 <div class="stat-icon" style="background: rgba(248, 49, 47, 0.1); color: var(--danger);">
                     <i class="fa-solid fa-bug"></i>
@@ -81,23 +91,13 @@
                 </div>
             </div>
 
-            <div class="card stat-card" style="border-left: 4px solid var(--warning);">
-                <div class="stat-icon" style="background: rgba(245, 166, 35, 0.1); color: var(--warning);">
-                    <i class="fa-solid fa-triangle-exclamation"></i>
-                </div>
-                <div>
-                    <h3 style="font-size: 2rem; margin: 0;">24</h3>
-                    <p style="color: var(--text-muted);">Open Issues</p>
-                </div>
-            </div>
-
             <div class="card stat-card" style="border-left: 4px solid var(--success);">
                 <div class="stat-icon" style="background: rgba(0, 210, 106, 0.1); color: var(--success);">
                     <i class="fa-solid fa-file-invoice"></i>
                 </div>
                 <div>
                     <h3 style="font-size: 2rem; margin: 0;">5</h3>
-                    <p style="color: var(--text-muted);">Reports Generated</p>
+                    <p style="color: var(--text-muted);">Reports Created</p>
                 </div>
             </div>
         </div>
@@ -117,40 +117,31 @@
                         <th style="padding: 1rem;">Project Name</th>
                         <th style="padding: 1rem;">Client</th>
                         <th style="padding: 1rem;">Status</th>
-                        <th style="padding: 1rem;">Progress</th>
-                        <th style="padding: 1rem;"></th>
+                        <th style="padding: 1rem;">Findings</th>
+                        <th style="padding: 1rem;">Actions</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr class="table-row">
-                        <td style="padding: 1rem;">FinTech API Audit</td>
-                        <td style="padding: 1rem;">Stripe Inc.</td>
+                        <td style="padding: 1rem;">WebApp-01</td>
+                        <td style="padding: 1rem;">Client A</td>
                         <td style="padding: 1rem;"><span class="badge badge-ongoing">Ongoing</span></td>
+                        <td style="padding: 1rem;">12</td>
                         <td style="padding: 1rem;">
-                            <div
-                                style="width: 100px; height: 6px; background: var(--bg-panel); border-radius: 3px; overflow: hidden;">
-                                <div style="width: 65%; height: 100%; background: var(--primary);"></div>
-                            </div>
-                        </td>
-                        <td style="padding: 1rem; text-align: right;">
-                            <button class="btn-icon"><i class="fa-solid fa-chevron-right"></i></button>
+                            <a href="#/project" class="btn btn-primary"
+                                style="padding: 0.4rem 0.8rem; font-size: 0.8rem;">Open</a>
                         </td>
                     </tr>
                     <tr class="table-row">
-                        <td style="padding: 1rem;">Healthcare Mobile App</td>
-                        <td style="padding: 1rem;">Kaiser Permanente</td>
+                        <td style="padding: 1rem;">Website-PenTest</td>
+                        <td style="padding: 1rem;">Client B</td>
                         <td style="padding: 1rem;"><span class="badge badge-completed">Completed</span></td>
+                        <td style="padding: 1rem;">23</td>
                         <td style="padding: 1rem;">
-                            <div
-                                style="width: 100px; height: 6px; background: var(--bg-panel); border-radius: 3px; overflow: hidden;">
-                                <div style="width: 100%; height: 100%; background: var(--success);"></div>
-                            </div>
-                        </td>
-                        <td style="padding: 1rem; text-align: right;">
-                            <button class="btn-icon"><i class="fa-solid fa-chevron-right"></i></button>
+                            <a href="#/project" class="btn btn-outline"
+                                style="padding: 0.4rem 0.8rem; font-size: 0.8rem;">View</a>
                         </td>
                     </tr>
-                    <!-- More rows... -->
                 </tbody>
             </table>
         </div>

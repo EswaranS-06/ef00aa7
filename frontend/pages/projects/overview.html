@@ -45,14 +45,7 @@
             <a href="#/projects" style="color: var(--text-muted); font-size: 0.9rem;"><i
                     class="fa-solid fa-arrow-left"></i> Back to Projects</a>
             <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 1rem;">
-                <div>
-                    <h2 style="font-size: 2rem;">FinTech API Audit</h2>
-                    <div style="display: flex; gap: 1rem; color: var(--text-muted); font-size: 0.9rem;">
-                        <span><i class="fa-solid fa-building"></i> Stripe Inc.</span>
-                        <span><i class="fa-solid fa-calendar"></i> Oct 24, 2023 - Nov 10, 2023</span>
-                        <span class="badge badge-ongoing">Ongoing</span>
-                    </div>
-                </div>
+                <h2 style="font-size: 2rem;">WebApp-01</h2>
                 <div style="display: flex; gap: 1rem;">
                     <a href="#/reports" class="btn btn-outline" style="padding: 0.5rem 1rem;">Generate Report</a>
                     <a href="#/vuln/add" class="btn btn-primary"><i class="fa-solid fa-plus"></i> Add Vulnerability</a>
@@ -60,71 +53,136 @@
             </div>
         </header>
 
-        <!-- Stats Row -->
-        <div style="display: flex; gap: 1.5rem; margin-bottom: 2rem;">
-            <div class="card" style="flex: 1; padding: 1.5rem; text-align: center;">
-                <div style="font-size: 2rem; font-weight: 700; color: var(--danger);">3</div>
-                <div style="color: var(--text-muted); font-size: 0.9rem;">Critical</div>
+        <div style="display: grid; grid-template-columns: 300px 1fr; gap: 2rem;">
+            <!-- Left: Project Summary -->
+            <div>
+                <div class="card">
+                    <h4
+                        style="margin-bottom: 1.5rem; border-bottom: 1px solid var(--glass-border); padding-bottom: 1rem;">
+                        Project Summary</h4>
+                    <div style="display: flex; flex-direction: column; gap: 1rem;">
+                        <div>
+                            <div style="color: var(--text-muted); font-size: 0.9rem;">Client</div>
+                            <div style="font-weight: 600;">ACME Ltd</div>
+                        </div>
+                        <div>
+                            <div style="color: var(--text-muted); font-size: 0.9rem;">Start Date</div>
+                            <div style="font-weight: 600;">Oct 24, 2023</div>
+                        </div>
+                        <div>
+                            <div style="color: var(--text-muted); font-size: 0.9rem;">End Date</div>
+                            <div style="font-weight: 600;">Nov 10, 2023</div>
+                        </div>
+                        <div>
+                            <div style="color: var(--text-muted); font-size: 0.9rem;">Total Findings</div>
+                            <div style="font-weight: 600; font-size: 1.25rem; color: var(--danger);">12</div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="card" style="flex: 1; padding: 1.5rem; text-align: center;">
-                <div style="font-size: 2rem; font-weight: 700; color: var(--warning);">7</div>
-                <div style="color: var(--text-muted); font-size: 0.9rem;">High</div>
-            </div>
-            <div class="card" style="flex: 1; padding: 1.5rem; text-align: center;">
-                <div style="font-size: 2rem; font-weight: 700; color: var(--info);">12</div>
-                <div style="color: var(--text-muted); font-size: 0.9rem;">Medium</div>
-            </div>
-            <div class="card" style="flex: 1; padding: 1.5rem; text-align: center;">
-                <div style="font-size: 2rem; font-weight: 700; color: var(--success);">5</div>
-                <div style="color: var(--text-muted); font-size: 0.9rem;">Low</div>
+
+            <!-- Right: Tabs & Content -->
+            <div>
+                <div class="card" style="padding: 0; min-height: 500px;">
+                    <div class="tab-container">
+                        <button class="tab-btn tab-active" onclick="showTab(event, 'findings')">Findings</button>
+                        <button class="tab-btn" onclick="showTab(event, 'evidence')">Evidence</button>
+                        <button class="tab-btn" onclick="showTab(event, 'team')">Team</button>
+                        <button class="tab-btn" onclick="showTab(event, 'settings')">Report Settings</button>
+                    </div>
+
+                    <div style="padding: 1.5rem;">
+                        <!-- Findings Tab Content -->
+                        <div id="findings" class="tab-content">
+                            <table style="width: 100%; border-collapse: collapse;">
+                                <thead>
+                                    <tr
+                                        style="color: var(--text-muted); text-align: left; border-bottom: 1px solid var(--glass-border);">
+                                        <th style="padding: 1rem;">Title</th>
+                                        <th style="padding: 1rem;">Severity</th>
+                                        <th style="padding: 1rem;">Status</th>
+                                        <th style="padding: 1rem;">Assigned To</th>
+                                        <th style="padding: 1rem;">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="table-row">
+                                        <td style="padding: 1rem; font-weight: 600;">SQL Injection</td>
+                                        <td style="padding: 1rem;"><span
+                                                style="color: var(--danger); font-weight: 600;">Critical</span></td>
+                                        <td style="padding: 1rem;"><span class="badge badge-ongoing">Open</span></td>
+                                        <td style="padding: 1rem;">John</td>
+                                        <td style="padding: 1rem;">
+                                            <a href="#/vuln" class="btn btn-outline"
+                                                style="padding: 0.4rem 0.8rem; font-size: 0.8rem;">View</a>
+                                        </td>
+                                    </tr>
+                                    <tr class="table-row">
+                                        <td style="padding: 1rem; font-weight: 600;">Broken Auth</td>
+                                        <td style="padding: 1rem;"><span
+                                                style="color: var(--warning); font-weight: 600;">High</span></td>
+                                        <td style="padding: 1rem;"><span class="badge badge-ongoing">Open</span></td>
+                                        <td style="padding: 1rem;">Sara</td>
+                                        <td style="padding: 1rem;">
+                                            <a href="#/vuln" class="btn btn-outline"
+                                                style="padding: 0.4rem 0.8rem; font-size: 0.8rem;">View</a>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <!-- Evidence Tab -->
+                        <div id="evidence" class="tab-content" style="display: none;">
+                            <div style="text-align: center; color: var(--text-muted); padding: 3rem;">
+                                <i class="fa-solid fa-camera" style="font-size: 3rem; margin-bottom: 1rem;"></i>
+                                <p>No evidence uploaded yet.</p>
+                            </div>
+                        </div>
+
+                        <!-- Team Tab -->
+                        <div id="team" class="tab-content" style="display: none;">
+                            <div style="display: flex; gap: 1rem;">
+                                <div
+                                    style="display: flex; align-items: center; gap: 1rem; background: var(--bg-dark); padding: 1rem; border-radius: 8px;">
+                                    <div style="width: 40px; height: 40px; background: #333; border-radius: 50%;"></div>
+                                    <div>
+                                        <div style="font-weight: 600;">John Doe</div>
+                                        <div style="font-size: 0.8rem; color: var(--text-muted);">Lead Tester</div>
+                                    </div>
+                                </div>
+                                <div
+                                    style="display: flex; align-items: center; gap: 1rem; background: var(--bg-dark); padding: 1rem; border-radius: 8px;">
+                                    <div style="width: 40px; height: 40px; background: #333; border-radius: 50%;"></div>
+                                    <div>
+                                        <div style="font-weight: 600;">Sara Smith</div>
+                                        <div style="font-size: 0.8rem; color: var(--text-muted);">Analyst</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Settings Tab -->
+                        <div id="settings" class="tab-content" style="display: none;">
+                            <p style="color: var(--text-muted);">Project-specific report settings will appear here.</p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
 
-        <!-- Content Tabs -->
-        <div class="card" style="padding: 0;">
-            <div class="tab-container">
-                <button class="tab-btn tab-active">Findings</button>
-                <button class="tab-btn">Evidence</button>
-                <button class="tab-btn">Scope</button>
-            </div>
+        <script>
+            function showTab(e, tabId) {
+                // Hide all contents
+                document.querySelectorAll('.tab-content').forEach(el => el.style.display = 'none');
+                // Remove active class
+                document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('tab-active'));
 
-            <div style="padding: 1.5rem;">
-                <!-- Findings Tab Content -->
-                <table style="width: 100%; border-collapse: collapse;">
-                    <thead>
-                        <tr
-                            style="color: var(--text-muted); text-align: left; border-bottom: 1px solid var(--glass-border);">
-                            <th style="padding: 1rem;">Vulnerability</th>
-                            <th style="padding: 1rem;">Severity</th>
-                            <th style="padding: 1rem;">Status</th>
-                            <th style="padding: 1rem;">CVSS</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr class="table-row" onclick="window.router.navigateTo('#/vuln')" style="cursor: pointer;">
-                            <td style="padding: 1rem;">
-                                <div style="font-weight: 600;">SQL Injection in Login</div>
-                                <div style="font-size: 0.8rem; color: var(--text-muted);">OWASP A03:2021</div>
-                            </td>
-                            <td style="padding: 1rem;"><span
-                                    style="color: var(--danger); font-weight: 600;">Critical</span></td>
-                            <td style="padding: 1rem;"><span class="badge badge-ongoing">Open</span></td>
-                            <td style="padding: 1rem;">9.8</td>
-                        </tr>
-                        <tr class="table-row" onclick="window.router.navigateTo('#/vuln')" style="cursor: pointer;">
-                            <td style="padding: 1rem;">
-                                <div style="font-weight: 600;">XSS Stored in Comments</div>
-                                <div style="font-size: 0.8rem; color: var(--text-muted);">OWASP A03:2021</div>
-                            </td>
-                            <td style="padding: 1rem;"><span
-                                    style="color: var(--warning); font-weight: 600;">High</span></td>
-                            <td style="padding: 1rem;"><span class="badge badge-ongoing">Open</span></td>
-                            <td style="padding: 1rem;">7.2</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
+                // Show selected
+                document.getElementById(tabId).style.display = 'block';
+                e.target.classList.add('tab-active');
+            }
+        </script>
 
     </main>
 </div>

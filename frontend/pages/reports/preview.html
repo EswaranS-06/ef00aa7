@@ -46,10 +46,11 @@
                 <h2 style="font-size: 2rem;">Generate Report</h2>
                 <p style="color: var(--text-muted);">Preview and export your findings.</p>
             </div>
-            <div style="display: flex; gap: 1rem;">
-                <button class="btn btn-outline"><i class="fa-regular fa-file-word"></i> Export Word</button>
-                <button class="btn btn-primary"><i class="fa-solid fa-download"></i> Download PDF</button>
+            <div>
+                <h2 style="font-size: 2rem;">Generate Report</h2>
+                <p style="color: var(--text-muted);">Preview and export your findings.</p>
             </div>
+            <!-- Actions moved to sidebar -->
         </header>
 
         <div style="display: grid; grid-template-columns: 300px 1fr; gap: 2rem; height: calc(100vh - 200px);">
@@ -88,6 +89,17 @@
                 <div style="margin-bottom: 1rem;">
                     <label style="display: block; margin-bottom: 0.5rem;">Company Logo</label>
                     <button class="btn btn-outline" style="width: 100%; font-size: 0.9rem;">Upload Logo</button>
+                </div>
+
+                <hr style="border: 0; border-top: 1px solid var(--glass-border); margin: 1.5rem 0;">
+
+                <div style="display: flex; flex-direction: column; gap: 1rem;">
+                    <button class="btn btn-primary" style="width: 100%; justify-content: center;"><i
+                            class="fa-solid fa-download"></i> Download PDF</button>
+                    <button class="btn btn-outline" style="width: 100%; justify-content: center;"><i
+                            class="fa-regular fa-file-word"></i> Export Word</button>
+                    <button class="btn btn-outline" style="width: 100%; justify-content: center;"><i
+                            class="fa-solid fa-file-code"></i> Download JSON</button>
                 </div>
             </div>
 

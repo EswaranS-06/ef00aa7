@@ -39,7 +39,7 @@ class Router {
                 this.navigateTo(link.href);
             }
         });
-        
+
         this.handleRoute();
     }
 
@@ -51,24 +51,24 @@ class Router {
     async handleRoute() {
         const path = window.location.pathname;
         const routePath = path === '/index.html' ? '/' : path; // Handle local file opening
-        
+
         // Simple client-side router logic
         // For static file serving, we might strictly use hash routing or query params if not on a real server
         // But assuming a dev server that falls back to index.html or we use hash routing.
-        
+
         // Let's implement Hash Routing for easier local testing without complex server config
         const hash = window.location.hash || '#/';
         const cleanHash = hash.replace('#', '');
-        
+
         console.log(`Navigating to: ${cleanHash}`);
-        
+
         // Default to login if root
         let templatePath = routes[cleanHash];
-        
+
         // Mock fallback for now
         if (!templatePath) {
-             if (cleanHash === '/') templatePath = routes['/'];
-             else templatePath = 'pages/404.html';
+            if (cleanHash === '/') templatePath = routes['/'];
+            else templatePath = 'pages/404.html';
         }
 
         await this.loadPage(templatePath);
@@ -77,14 +77,14 @@ class Router {
     async loadPage(path) {
         try {
             this.app.innerHTML = '<div class="flex-center" style="height:100vh"><div class="loader"></div></div>'; // Simple loader
-            
+
             const response = await fetch(path);
             if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
             const html = await response.text();
-            
+
             this.app.innerHTML = html;
             this.app.classList.add('fade-in');
-            
+
             // Re-run scripts in the injected HTML if any (browser doesn't execute <script> in innerHTML)
             // For this architecture, we will rely on module imports in the value of the route or event based initialization
             this.triggerPageInit();
@@ -104,12 +104,80 @@ class Router {
 
 // Global State Store (Simple)
 const store = {
-    user: null,
+    user: {
+        name: 'Admin User',
+        role: 'Administrator', // or 'Analyst'
+        email: 'admin@vapt.com'
+    },
     currentProject: null,
     theme: 'dark'
 };
 
+// Role Management UI Helper
+function updateRoleUI() {
+    const isAdmin = store.user.role === 'Administrator';
+
+    // Toggle Body Class
+    if (!isAdmin) {
+        document.body.classList.add('role-analyst');
+    } else {
+        document.body.classList.remove('role-analyst');
+    }
+
+    // Update Sidebar Info (if present)
+    const nameEls = document.querySelectorAll('.user-name-display');
+    const roleEls = document.querySelectorAll('.user-role-display');
+
+    nameEls.forEach(el => el.textContent = store.user.name);
+    roleEls.forEach(el => el.textContent = store.user.role);
+}
+
+// Window Helper for Testing
+window.setRole = (role) => {
+    store.user.role = role;
+    store.user.name = role === 'Administrator' ? 'Admin User' : 'Jane Doe (Analyst)';
+    updateRoleUI();
+    console.log(`Role switched to: ${role}`);
+};
+
+// Theme Management Helper
+function updateThemeUI() {
+    const body = document.body;
+    const toggle = document.getElementById('themeToggle');
+
+    // Default to dark if not set
+    if (!store.theme) store.theme = 'dark';
+
+    if (store.theme === 'light') {
+        body.classList.add('light-theme');
+        if (toggle) toggle.checked = false; // "Dark Mode" off means Light Mode
+    } else {
+        body.classList.remove('light-theme');
+        if (toggle) toggle.checked = true; // "Dark Mode" on
+    }
+}
+
 // Initialize
 document.addEventListener('DOMContentLoaded', () => {
     window.router = new Router();
+    window.router.originalLoadPage = window.router.loadPage;
+
+    // Monkey patch loadPage to run logic after render
+    window.router.loadPage = async function (path) {
+        await window.router.originalLoadPage.call(window.router, path);
+        updateRoleUI();
+        updateThemeUI();
+
+        // Re-attach listener if on settings page
+        const toggle = document.getElementById('themeToggle');
+        if (toggle) {
+            toggle.addEventListener('change', (e) => {
+                store.theme = e.target.checked ? 'dark' : 'light';
+                updateThemeUI();
+            });
+        }
+    };
+
+    updateRoleUI(); // Initial check
+    updateThemeUI(); // Initial check
 });

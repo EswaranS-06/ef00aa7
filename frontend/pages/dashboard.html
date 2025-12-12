@@ -10,37 +10,17 @@
             </div>
             <h1 style="font-size: 1.25rem; font-weight: 700;">VAPT Pro</h1>
         </div>
-
         <nav style="flex: 1; padding: 1rem;">
             <ul style="list-style: none; display: flex; flex-direction: column; gap: 0.5rem;">
-                <li>
-                    <a href="#/dashboard" class="nav-link active">
-                        <i class="fa-solid fa-grid-2"></i> Dashboard
-                    </a>
+                <li><a href="#/dashboard" class="nav-link active"><i class="fa-solid fa-border-all"></i> Dashboard</a>
                 </li>
-                <li>
-                    <a href="#/projects" class="nav-link">
-                        <i class="fa-solid fa-folder-open"></i> Projects
-                    </a>
+                <li><a href="#/projects" class="nav-link"><i class="fa-solid fa-folder-open"></i> Projects</a></li>
+                <li><a href="#/reports" class="nav-link"><i class="fa-solid fa-file-contract"></i> Reports</a></li>
+                <li class="admin-only"><a href="#/users" class="nav-link"><i class="fa-solid fa-users"></i> Users</a>
                 </li>
-                <li>
-                    <a href="#/reports" class="nav-link">
-                        <i class="fa-solid fa-file-contract"></i> Reports
-                    </a>
-                </li>
-                <li>
-                    <a href="#/users" class="nav-link">
-                        <i class="fa-solid fa-users"></i> Users
-                    </a>
-                </li>
-                <li>
-                    <a href="#/settings" class="nav-link">
-                        <i class="fa-solid fa-gear"></i> Settings
-                    </a>
-                </li>
+                <li><a href="#/settings" class="nav-link"><i class="fa-solid fa-gear"></i> Settings</a></li>
             </ul>
         </nav>
-
         <div style="padding: 1.5rem; border-top: 1px solid var(--glass-border);">
             <div style="display: flex; align-items: center; gap: 1rem;">
                 <div
@@ -48,8 +28,9 @@
                     <i class="fa-solid fa-user"></i>
                 </div>
                 <div>
-                    <div style="font-weight: 600; font-size: 0.9rem;" id="userName">Admin User</div>
-                    <div style="font-size: 0.8rem; color: var(--text-muted);" id="userRole">Administrator</div>
+                    <div style="font-weight: 600; font-size: 0.9rem;" class="user-name-display">Admin User</div>
+                    <div style="font-size: 0.8rem; color: var(--text-muted);" class="user-role-display">Administrator
+                    </div>
                 </div>
                 <a href="#/" style="margin-left: auto; color: var(--danger); cursor: pointer;" title="Logout">
                     <i class="fa-solid fa-right-from-bracket"></i>
@@ -177,85 +158,7 @@
     </main>
 </div>
 
-<style>
-    /* Dashboard specific styles */
-    .nav-link {
-        display: flex;
-        align-items: center;
-        gap: 1rem;
-        padding: 0.8rem 1rem;
-        border-radius: var(--radius-sm);
-        color: var(--text-muted);
-        transition: var(--trans-fast);
-    }
 
-    .nav-link:hover,
-    .nav-link.active {
-        background: rgba(255, 255, 255, 0.05);
-        color: var(--text-main);
-    }
-
-    .nav-link.active {
-        background: linear-gradient(90deg, rgba(111, 66, 193, 0.2) 0%, transparent 100%);
-        border-left: 3px solid var(--primary);
-    }
-
-    .stat-card {
-        display: flex;
-        align-items: center;
-        gap: 1.5rem;
-        padding: 1.5rem;
-    }
-
-    .stat-icon {
-        width: 60px;
-        height: 60px;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 1.5rem;
-        flex-shrink: 0;
-    }
-
-    .badge {
-        padding: 0.25rem 0.75rem;
-        border-radius: 50px;
-        font-size: 0.75rem;
-        font-weight: 600;
-    }
-
-    .badge-ongoing {
-        background: rgba(245, 166, 35, 0.2);
-        color: var(--warning);
-    }
-
-    .badge-completed {
-        background: rgba(0, 210, 106, 0.2);
-        color: var(--success);
-    }
-
-    .table-row {
-        transition: var(--trans-fast);
-    }
-
-    .table-row:hover {
-        background: var(--glass-bg);
-    }
-
-    .btn-icon {
-        background: transparent;
-        border: none;
-        color: var(--text-muted);
-        cursor: pointer;
-        font-size: 1rem;
-        transition: var(--trans-fast);
-    }
-
-    .btn-icon:hover {
-        color: var(--primary);
-    }
-</style>
 
 <script>
     // In a real app, we would fetch data here

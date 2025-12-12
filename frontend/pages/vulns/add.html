@@ -1,0 +1,178 @@
+<div style="display: flex; height: 100vh; overflow: hidden;">
+    <!-- Sidebar -->
+    <aside
+        style="width: 260px; background: var(--bg-panel); border-right: 1px solid var(--glass-border); display: flex; flex-direction: column; z-index: 20;">
+        <div style="padding: 2rem; display: flex; align-items: center; gap: 1rem;">
+            <div
+                style="width: 40px; height: 40px; background: linear-gradient(135deg, var(--primary), #8a2be2); border-radius: 12px; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 15px var(--primary-glow);">
+                <i class="fa-solid fa-shield-halved text-white"></i>
+            </div>
+            <h1 style="font-size: 1.25rem; font-weight: 700;">VAPT Pro</h1>
+        </div>
+        <nav style="flex: 1; padding: 1rem;">
+            <ul style="list-style: none; display: flex; flex-direction: column; gap: 0.5rem;">
+                <li><a href="#/dashboard" class="nav-link"><i class="fa-solid fa-grid-2"></i> Dashboard</a></li>
+                <li><a href="#/projects" class="nav-link active"><i class="fa-solid fa-folder-open"></i> Projects</a>
+                </li>
+            </ul>
+        </nav>
+    </aside>
+
+    <main style="flex: 1; overflow-y: auto; background: var(--bg-dark); padding: 2rem;">
+
+        <div style="max-width: 1000px; margin: 0 auto;">
+            <header style="margin-bottom: 2rem;">
+                <a href="#/project" style="color: var(--text-muted); font-size: 0.9rem;"><i
+                        class="fa-solid fa-arrow-left"></i> Back to Project</a>
+                <h2 style="font-size: 2rem; margin-top: 0.5rem;">Add Vulnerability</h2>
+                <p style="color: var(--text-muted);">Log a new security finding.</p>
+            </header>
+
+            <form onsubmit="handleSaveVuln(event)">
+                <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 2rem;">
+
+                    <!-- Left Column: Details -->
+                    <div class="card">
+                        <h4 style="margin-bottom: 1.5rem; color: var(--text-muted);">Vulnerability Details</h4>
+
+                        <div class="input-group">
+                            <label style="display: block; margin-bottom: 0.5rem;">Title</label>
+                            <input type="text" class="input-field" placeholder="e.g. Reflected XSS in Search Bar"
+                                required>
+                        </div>
+
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
+                            <div class="input-group">
+                                <label style="display: block; margin-bottom: 0.5rem;">Category</label>
+                                <select class="input-field">
+                                    <option>Injection</option>
+                                    <option>Broken Authentication</option>
+                                    <option>Sensitive Data Exposure</option>
+                                    <option>XML External Entities (XXE)</option>
+                                    <option>Broken Access Control</option>
+                                    <option>Security Misconfiguration</option>
+                                    <option>Cross-Site Scripting (XSS)</option>
+                                </select>
+                            </div>
+                            <div class="input-group">
+                                <label style="display: block; margin-bottom: 0.5rem;">Severity</label>
+                                <select class="input-field" id="severitySelect" onchange="updateSeverityColor()">
+                                    <option value="Critical">Critical</option>
+                                    <option value="High">High</option>
+                                    <option value="Medium">Medium</option>
+                                    <option value="Low">Low</option>
+                                    <option value="Info">Info</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="input-group">
+                            <label style="display: block; margin-bottom: 0.5rem;">Description</label>
+                            <textarea class="input-field" rows="4"
+                                placeholder="Detailed description of the vulnerability..."></textarea>
+                        </div>
+
+                        <div class="input-group">
+                            <label style="display: block; margin-bottom: 0.5rem;">Reproduction Steps</label>
+                            <textarea class="input-field" rows="4"
+                                placeholder="1. Navigate to...&#10;2. Input payload..."></textarea>
+                        </div>
+
+                        <div class="input-group">
+                            <label style="display: block; margin-bottom: 0.5rem;">Impact</label>
+                            <textarea class="input-field" rows="3"
+                                placeholder="What can an attacker achieve?"></textarea>
+                        </div>
+
+                        <div class="input-group">
+                            <label style="display: block; margin-bottom: 0.5rem;">Recommendations</label>
+                            <textarea class="input-field" rows="3" placeholder="How to fix this issue..."></textarea>
+                        </div>
+                    </div>
+
+                    <!-- Right Column: Scoring & Media -->
+                    <div style="display: flex; flex-direction: column; gap: 1.5rem;">
+                        <!-- CVSS Calculator -->
+                        <div class="card">
+                            <h4 style="margin-bottom: 1rem; color: var(--text-muted);">CVSS 3.1 Score</h4>
+                            <div style="text-align: center; margin-bottom: 1.5rem;">
+                                <div id="cvssDisplay"
+                                    style="font-size: 3.5rem; font-weight: 700; color: var(--danger); line-height: 1;">
+                                    9.8</div>
+                                <div id="cvssLabel" style="font-weight: 600; color: var(--danger);">Critical</div>
+                            </div>
+
+                            <div style="font-size: 0.8rem;">
+                                <div style="margin-bottom: 0.5rem;">
+                                    <label>Attack Vector</label>
+                                    <select class="input-field" style="padding: 0.5rem;" onchange="calculateCVSS()">
+                                        <option value="0.85">Network (N)</option>
+                                        <option value="0.62">Adjacent (A)</option>
+                                        <option value="0.55">Local (L)</option>
+                                        <option value="0.2">Physical (P)</option>
+                                    </select>
+                                </div>
+                                <div style="margin-bottom: 0.5rem;">
+                                    <label>Attack Complexity</label>
+                                    <select class="input-field" style="padding: 0.5rem;" onchange="calculateCVSS()">
+                                        <option value="0.77">Low (L)</option>
+                                        <option value="0.44">High (H)</option>
+                                    </select>
+                                </div>
+                                <!-- Simplified for demo -->
+                            </div>
+                        </div>
+
+                        <!-- Attachments -->
+                        <div class="card">
+                            <h4 style="margin-bottom: 1rem; color: var(--text-muted);">Evidence</h4>
+                            <div style="border: 2px dashed var(--glass-border); border-radius: var(--radius-md); padding: 2rem; text-align: center; cursor: pointer; transition: var(--trans-fast);"
+                                onmouseover="this.style.borderColor='var(--primary)'"
+                                onmouseout="this.style.borderColor='var(--glass-border)'">
+                                <i class="fa-solid fa-cloud-arrow-up"
+                                    style="font-size: 1.5rem; color: var(--text-muted); margin-bottom: 0.5rem;"></i>
+                                <p style="color: var(--text-muted); font-size: 0.9rem;">Drag & drop screenshots or click
+                                    to browse</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div
+                    style="display: flex; justify-content: flex-end; gap: 1rem; margin-top: 2rem; padding-bottom: 2rem;">
+                    <a href="#/project" class="btn btn-outline">Cancel</a>
+                    <button type="submit" class="btn btn-primary">Save Vulnerability</button>
+                </div>
+            </form>
+        </div>
+
+    </main>
+</div>
+
+<script>
+    function updateSeverityColor() {
+        const sel = document.getElementById('severitySelect');
+        const val = sel.value;
+        // Mock color change logic
+    }
+
+    function calculateCVSS() {
+        // Mock CVSS calculation update
+        const score = (Math.random() * (10 - 4) + 4).toFixed(1);
+        const display = document.getElementById('cvssDisplay');
+        const label = document.getElementById('cvssLabel');
+
+        display.innerText = score;
+
+        if (score >= 9.0) { display.style.color = 'var(--danger)'; label.innerText = 'Critical'; label.style.color = 'var(--danger)'; }
+        else if (score >= 7.0) { display.style.color = 'var(--warning)'; label.innerText = 'High'; label.style.color = 'var(--warning)'; }
+        else if (score >= 4.0) { display.style.color = 'var(--info)'; label.innerText = 'Medium'; label.style.color = 'var(--info)'; }
+        else { display.style.color = 'var(--success)'; label.innerText = 'Low'; label.style.color = 'var(--success)'; }
+    }
+
+    function handleSaveVuln(e) {
+        e.preventDefault();
+        window.router.navigateTo('#/vuln');
+    }
+</script>

@@ -1,0 +1,76 @@
+<div class="flex-center" style="min-height: 100vh; position: relative; overflow: hidden;">
+    <!-- Background Elements -->
+    <div
+        style="position: absolute; bottom: -20%; left: -10%; width: 60%; height: 60%; background: radial-gradient(circle, var(--success) 0%, transparent 60%); opacity: 0.1; filter: blur(80px);">
+    </div>
+
+    <div class="card fade-in" style="width: 100%; max-width: 500px; z-index: 10;">
+        <div class="card-gloss"></div>
+
+        <div style="text-align: center; margin-bottom: 2rem;">
+            <h2 style="font-size: 1.75rem;">Create Account</h2>
+            <p style="color: var(--text-muted);">Join the VAPT platform</p>
+        </div>
+
+        <form onsubmit="handleRegister(event)">
+            <div class="input-group">
+                <i class="fa-regular fa-user input-icon"></i>
+                <input type="text" class="input-field" placeholder="Full Name" required>
+            </div>
+
+            <div class="input-group">
+                <i class="fa-regular fa-envelope input-icon"></i>
+                <input type="email" class="input-field" placeholder="Email Address" required>
+            </div>
+
+            <div class="input-group">
+                <i class="fa-solid fa-user-tag input-icon"></i>
+                <select class="input-field" style="appearance: none; cursor: pointer;">
+                    <option value="" disabled selected>Select Role</option>
+                    <option value="analyst">Security Analyst</option>
+                    <option value="admin">Administrator</option>
+                    <option value="viewer">Viewer</option>
+                </select>
+                <i class="fa-solid fa-chevron-down"
+                    style="position: absolute; right: 1rem; top: 50%; transform: translateY(-50%); pointer-events: none; color: var(--text-muted);"></i>
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                <div class="input-group">
+                    <i class="fa-solid fa-lock input-icon"></i>
+                    <input type="password" class="input-field" placeholder="Password" required>
+                </div>
+                <div class="input-group">
+                    <i class="fa-solid fa-lock input-icon"></i>
+                    <input type="password" class="input-field" placeholder="Confirm" required>
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary" style="width: 100%;">
+                Register Account
+            </button>
+        </form>
+
+        <div
+            style="text-align: center; margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid var(--glass-border);">
+            <p style="color: var(--text-muted); font-size: 0.9rem;">
+                Already have an account? <a href="#/" data-link style="color: var(--text-main); font-weight: 600;">Sign
+                    In</a>
+            </p>
+        </div>
+    </div>
+</div>
+
+<script>
+    function handleRegister(e) {
+        e.preventDefault();
+        const btn = e.target.querySelector('button[type="submit"]');
+        btn.innerHTML = 'Creating...';
+
+        setTimeout(() => {
+            // Mock Success
+            console.log("Registered");
+            window.router.navigateTo('#/');
+        }, 1500);
+    }
+</script>

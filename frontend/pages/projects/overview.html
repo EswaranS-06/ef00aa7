@@ -1,0 +1,113 @@
+<div style="display: flex; height: 100vh; overflow: hidden;">
+    <!-- Sidebar -->
+    <aside
+        style="width: 260px; background: var(--bg-panel); border-right: 1px solid var(--glass-border); display: flex; flex-direction: column; z-index: 20;">
+        <div style="padding: 2rem; display: flex; align-items: center; gap: 1rem;">
+            <div
+                style="width: 40px; height: 40px; background: linear-gradient(135deg, var(--primary), #8a2be2); border-radius: 12px; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 15px var(--primary-glow);">
+                <i class="fa-solid fa-shield-halved text-white"></i>
+            </div>
+            <h1 style="font-size: 1.25rem; font-weight: 700;">VAPT Pro</h1>
+        </div>
+        <nav style="flex: 1; padding: 1rem;">
+            <ul style="list-style: none; display: flex; flex-direction: column; gap: 0.5rem;">
+                <li><a href="#/dashboard" class="nav-link"><i class="fa-solid fa-grid-2"></i> Dashboard</a></li>
+                <li><a href="#/projects" class="nav-link active"><i class="fa-solid fa-folder-open"></i> Projects</a>
+                </li>
+                <li><a href="#/reports" class="nav-link"><i class="fa-solid fa-file-contract"></i> Reports</a></li>
+            </ul>
+        </nav>
+    </aside>
+
+    <main style="flex: 1; overflow-y: auto; background: var(--bg-dark); padding: 2rem;">
+
+        <header style="margin-bottom: 2rem;">
+            <a href="#/projects" style="color: var(--text-muted); font-size: 0.9rem;"><i
+                    class="fa-solid fa-arrow-left"></i> Back to Projects</a>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 1rem;">
+                <div>
+                    <h2 style="font-size: 2rem;">FinTech API Audit</h2>
+                    <div style="display: flex; gap: 1rem; color: var(--text-muted); font-size: 0.9rem;">
+                        <span><i class="fa-solid fa-building"></i> Stripe Inc.</span>
+                        <span><i class="fa-solid fa-calendar"></i> Oct 24, 2023 - Nov 10, 2023</span>
+                        <span class="badge badge-ongoing">Ongoing</span>
+                    </div>
+                </div>
+                <div style="display: flex; gap: 1rem;">
+                    <a href="#/reports" class="btn btn-outline" style="padding: 0.5rem 1rem;">Generate Report</a>
+                    <a href="#/vuln/add" class="btn btn-primary"><i class="fa-solid fa-plus"></i> Add Vulnerability</a>
+                </div>
+            </div>
+        </header>
+
+        <!-- Stats Row -->
+        <div style="display: flex; gap: 1.5rem; margin-bottom: 2rem;">
+            <div class="card" style="flex: 1; padding: 1.5rem; text-align: center;">
+                <div style="font-size: 2rem; font-weight: 700; color: var(--danger);">3</div>
+                <div style="color: var(--text-muted); font-size: 0.9rem;">Critical</div>
+            </div>
+            <div class="card" style="flex: 1; padding: 1.5rem; text-align: center;">
+                <div style="font-size: 2rem; font-weight: 700; color: var(--warning);">7</div>
+                <div style="color: var(--text-muted); font-size: 0.9rem;">High</div>
+            </div>
+            <div class="card" style="flex: 1; padding: 1.5rem; text-align: center;">
+                <div style="font-size: 2rem; font-weight: 700; color: var(--info);">12</div>
+                <div style="color: var(--text-muted); font-size: 0.9rem;">Medium</div>
+            </div>
+            <div class="card" style="flex: 1; padding: 1.5rem; text-align: center;">
+                <div style="font-size: 2rem; font-weight: 700; color: var(--success);">5</div>
+                <div style="color: var(--text-muted); font-size: 0.9rem;">Low</div>
+            </div>
+        </div>
+
+        <!-- Content Tabs -->
+        <div class="card" style="padding: 0;">
+            <div style="border-bottom: 1px solid var(--glass-border); padding: 0 1rem;">
+                <button class="tab-active"
+                    style="background: transparent; border: none; border-bottom: 2px solid var(--primary); color: var(--text-main); padding: 1rem 1.5rem; font-weight: 600; cursor: pointer;">Findings</button>
+                <button
+                    style="background: transparent; border: none; color: var(--text-muted); padding: 1rem 1.5rem; font-weight: 600; cursor: pointer;">Evidence</button>
+                <button
+                    style="background: transparent; border: none; color: var(--text-muted); padding: 1rem 1.5rem; font-weight: 600; cursor: pointer;">Scope</button>
+            </div>
+
+            <div style="padding: 1.5rem;">
+                <!-- Findings Tab Content -->
+                <table style="width: 100%; border-collapse: collapse;">
+                    <thead>
+                        <tr
+                            style="color: var(--text-muted); text-align: left; border-bottom: 1px solid var(--glass-border);">
+                            <th style="padding: 1rem;">Vulnerability</th>
+                            <th style="padding: 1rem;">Severity</th>
+                            <th style="padding: 1rem;">Status</th>
+                            <th style="padding: 1rem;">CVSS</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="table-row" onclick="window.router.navigateTo('#/vuln')" style="cursor: pointer;">
+                            <td style="padding: 1rem;">
+                                <div style="font-weight: 600;">SQL Injection in Login</div>
+                                <div style="font-size: 0.8rem; color: var(--text-muted);">OWASP A03:2021</div>
+                            </td>
+                            <td style="padding: 1rem;"><span
+                                    style="color: var(--danger); font-weight: 600;">Critical</span></td>
+                            <td style="padding: 1rem;"><span class="badge badge-ongoing">Open</span></td>
+                            <td style="padding: 1rem;">9.8</td>
+                        </tr>
+                        <tr class="table-row" onclick="window.router.navigateTo('#/vuln')" style="cursor: pointer;">
+                            <td style="padding: 1rem;">
+                                <div style="font-weight: 600;">XSS Stored in Comments</div>
+                                <div style="font-size: 0.8rem; color: var(--text-muted);">OWASP A03:2021</div>
+                            </td>
+                            <td style="padding: 1rem;"><span
+                                    style="color: var(--warning); font-weight: 600;">High</span></td>
+                            <td style="padding: 1rem;"><span class="badge badge-ongoing">Open</span></td>
+                            <td style="padding: 1rem;">7.2</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </main>
+</div>

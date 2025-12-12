@@ -1,0 +1,99 @@
+<div class="flex-center" style="min-height: 100vh; position: relative; overflow: hidden;">
+
+    <!-- Background Elements -->
+    <div
+        style="position: absolute; top: -10%; left: -10%; width: 50%; height: 50%; background: radial-gradient(circle, var(--primary) 0%, transparent 60%); opacity: 0.2; filter: blur(80px); animation: float 10s infinite;">
+    </div>
+    <div
+        style="position: absolute; bottom: -10%; right: -10%; width: 50%; height: 50%; background: radial-gradient(circle, var(--info) 0%, transparent 60%); opacity: 0.15; filter: blur(80px); animation: float 12s infinite reverse;">
+    </div>
+
+    <div class="card fade-in" style="width: 100%; max-width: 420px; z-index: 10;">
+        <div class="card-gloss"></div>
+
+        <div style="text-align: center; margin-bottom: 2rem;">
+            <div
+                style="width: 60px; height: 60px; background: linear-gradient(135deg, var(--primary), #8a2be2); border-radius: 16px; margin: 0 auto 1rem; display: flex; align-items: center; justify-content: center; font-size: 2rem; box-shadow: 0 0 20px var(--primary-glow);">
+                <i class="fa-solid fa-shield-halved text-white"></i>
+            </div>
+            <h2 style="font-size: 1.75rem; color: var(--text-main);">Welcome Back</h2>
+            <p style="color: var(--text-muted);">Sign in to access your VAPT dashboard</p>
+        </div>
+
+        <form id="loginForm" onsubmit="handleLogin(event)">
+            <div class="input-group">
+                <i class="fa-regular fa-envelope input-icon"></i>
+                <input type="email" class="input-field" placeholder="Email Address" required value="admin@vapt.com">
+            </div>
+
+            <div class="input-group">
+                <i class="fa-solid fa-lock input-icon"></i>
+                <input type="password" class="input-field" placeholder="Password" required value="password">
+            </div>
+
+            <div
+                style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; font-size: 0.9rem;">
+                <label
+                    style="color: var(--text-muted); display: flex; align-items: center; gap: 0.5rem; cursor: pointer;">
+                    <input type="checkbox" checked style="accent-color: var(--primary);"> Remember me
+                </label>
+                <a href="#/forgot-password" data-link style="color: var(--primary);">Forgot Password?</a>
+            </div>
+
+            <button type="submit" class="btn btn-primary" style="width: 100%;">
+                <span>Sign In</span>
+                <i class="fa-solid fa-arrow-right"></i>
+            </button>
+        </form>
+
+        <div
+            style="text-align: center; margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid var(--glass-border);">
+            <p style="color: var(--text-muted); font-size: 0.9rem;">
+                Don't have an account? <a href="#/register" data-link
+                    style="color: var(--text-main); font-weight: 600;">Contact Admin</a>
+            </p>
+        </div>
+    </div>
+</div>
+
+<script>
+    function handleLogin(e) {
+        e.preventDefault();
+
+        const btn = e.target.querySelector('button[type="submit"]');
+        const originalContent = btn.innerHTML;
+
+        // Loading state
+        btn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin"></i> Authenticating...';
+        btn.style.opacity = '0.8';
+
+        // Simulate API call
+        setTimeout(() => {
+            // Success Mock
+            store.user = { name: 'Admin User', role: 'Admin' };
+
+            // Show toast (if we had a library, using simple alert for now or implement toast in app.js)
+            // Ideally we should implement a showToast function in app.js and make it global
+            console.log("Logged in");
+
+            // Redirect
+            window.router.navigateTo('#/dashboard');
+        }, 1000);
+    }
+</script>
+
+<style>
+    @keyframes float {
+        0% {
+            transform: translate(0, 0);
+        }
+
+        50% {
+            transform: translate(20px, 30px);
+        }
+
+        100% {
+            transform: translate(0, 0);
+        }
+    }
+</style>

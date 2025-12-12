@@ -1,0 +1,121 @@
+<div style="display: flex; height: 100vh; overflow: hidden;">
+    <!-- Sidebar -->
+    <aside
+        style="width: 260px; background: var(--bg-panel); border-right: 1px solid var(--glass-border); display: flex; flex-direction: column; z-index: 20;">
+        <div style="padding: 2rem; display: flex; align-items: center; gap: 1rem;">
+            <div
+                style="width: 40px; height: 40px; background: linear-gradient(135deg, var(--primary), #8a2be2); border-radius: 12px; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 15px var(--primary-glow);">
+                <i class="fa-solid fa-shield-halved text-white"></i>
+            </div>
+            <h1 style="font-size: 1.25rem; font-weight: 700;">VAPT Pro</h1>
+        </div>
+        <nav style="flex: 1; padding: 1rem;">
+            <ul style="list-style: none; display: flex; flex-direction: column; gap: 0.5rem;">
+                <li><a href="#/dashboard" class="nav-link"><i class="fa-solid fa-grid-2"></i> Dashboard</a></li>
+                <li><a href="#/projects" class="nav-link"><i class="fa-solid fa-folder-open"></i> Projects</a></li>
+                <li><a href="#/reports" class="nav-link active"><i class="fa-solid fa-file-contract"></i> Reports</a>
+                </li>
+            </ul>
+        </nav>
+    </aside>
+
+    <main style="flex: 1; overflow-y: auto; background: var(--bg-dark); padding: 2rem;">
+
+        <header style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
+            <div>
+                <h2 style="font-size: 2rem;">Generate Report</h2>
+                <p style="color: var(--text-muted);">Preview and export your findings.</p>
+            </div>
+            <div style="display: flex; gap: 1rem;">
+                <button class="btn btn-outline"><i class="fa-regular fa-file-word"></i> Export Word</button>
+                <button class="btn btn-primary"><i class="fa-solid fa-download"></i> Download PDF</button>
+            </div>
+        </header>
+
+        <div style="display: grid; grid-template-columns: 300px 1fr; gap: 2rem; height: calc(100vh - 200px);">
+            <!-- Settings Panel -->
+            <div class="card">
+                <h4 style="margin-bottom: 1.5rem;">Report Settings</h4>
+
+                <div class="input-group">
+                    <label style="display: block; margin-bottom: 0.5rem;">Report Title</label>
+                    <input type="text" class="input-field" value="Vulnerability Assessment Report">
+                </div>
+
+                <div style="margin-bottom: 1.5rem;">
+                    <label style="display: block; margin-bottom: 1rem;">Include Sections</label>
+                    <div style="display: flex; flex-direction: column; gap: 0.8rem;">
+                        <label style="display: flex; align-items: center; gap: 0.5rem;">
+                            <input type="checkbox" checked style="accent-color: var(--primary);"> Executive Summary
+                        </label>
+                        <label style="display: flex; align-items: center; gap: 0.5rem;">
+                            <input type="checkbox" checked style="accent-color: var(--primary);"> Methodology
+                        </label>
+                        <label style="display: flex; align-items: center; gap: 0.5rem;">
+                            <input type="checkbox" checked style="accent-color: var(--primary);"> Findings Table
+                        </label>
+                        <label style="display: flex; align-items: center; gap: 0.5rem;">
+                            <input type="checkbox" checked style="accent-color: var(--primary);"> Recommendations
+                        </label>
+                        <label style="display: flex; align-items: center; gap: 0.5rem;">
+                            <input type="checkbox" checked style="accent-color: var(--primary);"> Evidence Attachments
+                        </label>
+                    </div>
+                </div>
+
+                <hr style="border: 0; border-top: 1px solid var(--glass-border); margin: 1.5rem 0;">
+
+                <div style="margin-bottom: 1rem;">
+                    <label style="display: block; margin-bottom: 0.5rem;">Company Logo</label>
+                    <button class="btn btn-outline" style="width: 100%; font-size: 0.9rem;">Upload Logo</button>
+                </div>
+            </div>
+
+            <!-- Live Preview -->
+            <div
+                style="background: white; color: black; border-radius: 4px; padding: 2rem; overflow-y: auto; box-shadow: 0 0 50px rgba(0,0,0,0.5);">
+                <!-- Mock PDF Content -->
+                <div style="text-align: center; margin-bottom: 3rem;">
+                    <h1 style="color: #333; margin-bottom: 1rem;">Vulnerability Assessment Report</h1>
+                    <p style="color: #666;">Prepared for Stripe Inc.</p>
+                    <p style="color: #666;">Date: Oct 24, 2025</p>
+                </div>
+
+                <h3 style="border-bottom: 2px solid #eee; padding-bottom: 0.5rem; margin-bottom: 1rem; color: #333;">1.
+                    Executive Summary</h3>
+                <p style="margin-bottom: 1.5rem; color: #444;">
+                    This report details the security vulnerabilities discovered during the assessment of the FinTech
+                    API. A total of 3 critical, 7 high, and 12 medium issues were identified.
+                </p>
+
+                <h3 style="border-bottom: 2px solid #eee; padding-bottom: 0.5rem; margin-bottom: 1rem; color: #333;">2.
+                    Severity Summary</h3>
+                <div style="display: flex; gap: 1rem; margin-bottom: 2rem;">
+                    <div
+                        style="flex:1; background: #ffebee; border: 1px solid #ffcdd2; padding: 1rem; border-radius: 4px; text-align: center;">
+                        <div style="font-weight: bold; color: #c62828;">Critical</div>
+                        <div style="font-size: 1.5rem;">3</div>
+                    </div>
+                    <div
+                        style="flex:1; background: #fff3e0; border: 1px solid #ffe0b2; padding: 1rem; border-radius: 4px; text-align: center;">
+                        <div style="font-weight: bold; color: #ef6c00;">High</div>
+                        <div style="font-size: 1.5rem;">7</div>
+                    </div>
+                    <div
+                        style="flex:1; background: #e3f2fd; border: 1px solid #bbdefb; padding: 1rem; border-radius: 4px; text-align: center;">
+                        <div style="font-weight: bold; color: #1565c0;">Medium</div>
+                        <div style="font-size: 1.5rem;">12</div>
+                    </div>
+                </div>
+
+                <h3 style="border-bottom: 2px solid #eee; padding-bottom: 0.5rem; margin-bottom: 1rem; color: #333;">3.
+                    Technical Findings</h3>
+                <div style="background: #fafafa; border: 1px solid #eee; padding: 1rem; margin-bottom: 1rem;">
+                    <h4 style="margin: 0 0 0.5rem 0; color: #c62828;">[Critical] SQL Injection in Login</h4>
+                    <p style="font-size: 0.9rem;">The application is vulnerable to SQL injection...</p>
+                </div>
+            </div>
+        </div>
+
+    </main>
+</div>

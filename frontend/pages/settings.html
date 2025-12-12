@@ -1,37 +1,39 @@
 <div style="display: flex; height: 100vh; overflow: hidden;">
     <!-- Sidebar -->
-    <aside
-        style="width: 260px; background: var(--bg-panel); border-right: 1px solid var(--glass-border); display: flex; flex-direction: column; z-index: 20;">
-        <div style="padding: 2rem; display: flex; align-items: center; gap: 1rem;">
-            <div
-                style="width: 40px; height: 40px; background: linear-gradient(135deg, var(--primary), #8a2be2); border-radius: 12px; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 15px var(--primary-glow);">
+    <aside id="sidebar" class="sidebar collapsed">
+        <div class="sidebar-header">
+            <div class="logo-container" onclick="toggleSidebar()" title="Toggle Menu">
                 <i class="fa-solid fa-shield-halved text-white"></i>
             </div>
-            <h1 style="font-size: 1.25rem; font-weight: 700;">VAPT Pro</h1>
+            <h1 class="logo-text">VAPT Pro</h1>
         </div>
         <nav style="flex: 1; padding: 1rem;">
             <ul style="list-style: none; display: flex; flex-direction: column; gap: 0.5rem;">
-                <li><a href="#/dashboard" class="nav-link"><i class="fa-solid fa-border-all"></i> Dashboard</a></li>
-                <li><a href="#/projects" class="nav-link"><i class="fa-solid fa-folder-open"></i> Projects</a></li>
-                <li><a href="#/reports" class="nav-link"><i class="fa-solid fa-file-contract"></i> Reports</a></li>
-                <li class="admin-only"><a href="#/users" class="nav-link"><i class="fa-solid fa-users"></i> Users</a>
-                </li>
-                <li><a href="#/settings" class="nav-link active"><i class="fa-solid fa-gear"></i> Settings</a></li>
+                <li><a href="#/dashboard" class="nav-link"><i class="fa-solid fa-border-all"></i> <span class="nav-text"
+                            style="margin-left: 0.5rem;">Dashboard</span></a></li>
+                <li><a href="#/projects" class="nav-link"><i class="fa-solid fa-folder-open"></i> <span class="nav-text"
+                            style="margin-left: 0.5rem;">Projects</span></a></li>
+                <li><a href="#/reports" class="nav-link"><i class="fa-solid fa-file-contract"></i> <span
+                            class="nav-text" style="margin-left: 0.5rem;">Reports</span></a></li>
+                <li class="admin-only"><a href="#/users" class="nav-link"><i class="fa-solid fa-users"></i> <span
+                            class="nav-text" style="margin-left: 0.5rem;">Users</span></a></li>
+                <li><a href="#/settings" class="nav-link active"><i class="fa-solid fa-gear"></i> <span class="nav-text"
+                            style="margin-left: 0.5rem;">Settings</span></a></li>
             </ul>
         </nav>
-        <div style="padding: 1.5rem; border-top: 1px solid var(--glass-border);">
+        <div class="sidebar-footer">
             <div style="display: flex; align-items: center; gap: 1rem;">
                 <div
-                    style="width: 40px; height: 40px; background: var(--bg-card); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--text-muted);">
+                    style="width: 40px; height: 40px; background: var(--bg-card); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--text-muted); flex-shrink: 0;">
                     <i class="fa-solid fa-user"></i>
                 </div>
-                <div>
-                    <!-- Dynamic User Info -->
+                <div class="user-info-group">
                     <div style="font-weight: 600; font-size: 0.9rem;" class="user-name-display">Admin User</div>
                     <div style="font-size: 0.8rem; color: var(--text-muted);" class="user-role-display">Administrator
                     </div>
                 </div>
-                <a href="#/" style="margin-left: auto; color: var(--danger); cursor: pointer;" title="Logout">
+                <a href="#/" class="user-info-group" style="margin-left: auto; color: var(--danger); cursor: pointer;"
+                    title="Logout">
                     <i class="fa-solid fa-right-from-bracket"></i>
                 </a>
             </div>

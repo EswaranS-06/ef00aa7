@@ -168,6 +168,12 @@ document.addEventListener('DOMContentLoaded', () => {
         updateRoleUI();
         updateThemeUI();
 
+        // Ensure sidebar is in correct state (Default collapsed)
+        const sidebar = document.getElementById('sidebar');
+        if (sidebar && !sidebar.classList.contains('collapsed')) {
+            sidebar.classList.add('collapsed');
+        }
+
         // Re-attach listener if on settings page
         const toggle = document.getElementById('themeToggle');
         if (toggle) {
@@ -175,6 +181,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 store.theme = e.target.checked ? 'dark' : 'light';
                 updateThemeUI();
             });
+        }
+    };
+
+    // Sidebar Toggle Helper
+    window.toggleSidebar = () => {
+        const sidebar = document.getElementById('sidebar');
+        if (sidebar) {
+            sidebar.classList.toggle('collapsed');
         }
     };
 

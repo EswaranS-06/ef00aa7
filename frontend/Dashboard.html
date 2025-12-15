@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>VAPT Reporting Tool – Dashboard</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background-color: #f4f6f9;
+      color: #2c2c2c;
+    }
+
+    .container {
+      display: flex;
+      min-height: 100vh;
+    }
+
+    /* Sidebar */
+    .sidebar {
+      width: 240px;
+      background-color: #ffffff;
+      border-right: 1px solid #e0e0e0;
+      padding: 20px;
+    }
+
+    .sidebar h2 {
+      font-size: 18px;
+      margin-bottom: 30px;
+      color: #0a58ca;
+    }
+
+    .nav-item {
+      margin-bottom: 15px;
+      font-size: 14px;
+      cursor: pointer;
+      color: #444;
+    }
+
+    .nav-item:hover {
+      color: #0a58ca;
+    }
+
+    /* Main Content */
+    .main {
+      flex: 1;
+      padding: 30px;
+    }
+
+    .top-section {
+      display: flex;
+      gap: 20px;
+    }
+
+    .left-panel {
+      width: 40%;
+    }
+
+    .right-panel {
+      width: 60%;
+    }
+
+    .card {
+      background-color: #ffffff;
+      border-radius: 6px;
+      padding: 20px;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+    }
+
+    .card h3 {
+      font-size: 15px;
+      margin-bottom: 15px;
+      color: #333;
+    }
+
+    .target-input {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 14px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+    }
+
+    table th, table td {
+      text-align: left;
+      padding: 8px;
+      border-bottom: 1px solid #eee;
+    }
+
+    .severity-high { color: #dc3545; font-weight: 600; }
+    .severity-medium { color: #fd7e14; font-weight: 600; }
+    .severity-low { color: #198754; font-weight: 600; }
+
+    .graph-placeholder {
+      height: 220px;
+      background-color: #f1f3f5;
+      border: 1px dashed #bbb;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #777;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <aside class="sidebar">
+      <h2>VAPT Tool</h2>
+      <div class="nav-item">Dashboard</div>
+      <div class="nav-item">Vulnerabilities</div>
+      <div class="nav-item">Reports</div>
+      <div class="nav-item">Settings</div>
+    </aside>
+
+    <main class="main">
+      <div class="top-section">
+        <!-- Left Panel -->
+        <div class="left-panel">
+          <div class="card">
+            <h3>Target Input</h3>
+            <input type="text" class="target-input" placeholder="Enter target domain or application name" />
+          </div>
+
+          <div class="card">
+            <h3>Recent Vulnerabilities</h3>
+            <table>
+              <tr>
+                <th>Name</th>
+                <th>Severity</th>
+                <th>Time</th>
+              </tr>
+              <tr>
+                <td>SQL Injection</td>
+                <td class="severity-high">High</td>
+                <td>2 mins ago</td>
+              </tr>
+              <tr>
+                <td>Cross-Site Scripting</td>
+                <td class="severity-medium">Medium</td>
+                <td>12 mins ago</td>
+              </tr>
+              <tr>
+                <td>Clickjacking</td>
+                <td class="severity-low">Low</td>
+                <td>30 mins ago</td>
+              </tr>
+            </table>
+          </div>
+        </div>
+
+        <!-- Right Panel -->
+        <div class="right-panel">
+          <div class="card">
+            <h3>Vulnerability Severity Overview</h3>
+            <div class="graph-placeholder">
+              Severity Graph Placeholder
+            </div>
+          </div>
+
+          <div class="card">
+            <h3>Recent Scan Summary</h3>
+            <p style="font-size:13px; line-height:1.6;">
+              Target: example.com<br />
+              Total Vulnerabilities: 12<br />
+              Overall Risk Score: High
+            </p>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+</body>
+</html>

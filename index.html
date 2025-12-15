@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Directory Browser</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+    ul {
+      list-style: none;
+      padding-left: 0;
+    }
+    li {
+      margin: 6px 0;
+    }
+    a {
+      text-decoration: none;
+      color: #0366d6;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    .folder {
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+<h2 id="path">/</h2>
+<ul id="list"></ul>
+
+<script>
+/* ===== CONFIG ===== */
+const OWNER = "EswaranS-06";
+const REPO  = "ef00aa7";
+const BRANCH = "master"; // or master
+
+/* =================== */
+
+const params = new URLSearchParams(window.location.search);
+const currentPath = params.get("path") || "";
+
+document.getElementById("path").textContent = "/" + currentPath;
+
+const apiUrl = `https://api.github.com/repos/${OWNER}/${REPO}/contents/${currentPath}?ref=${BRANCH}`;
+
+fetch(apiUrl)
+  .then(res => {
+    if (!res.ok) throw new Error("Failed to load directory");
+    return res.json();
+  })
+  .then(data => {
+    const ul = document.getElementById("list");
+    ul.innerHTML = "";
+
+    // Back link
+    if (currentPath) {
+      const parent = currentPath.split("/").slice(0, -1).join("/");
+      ul.innerHTML += `
+        <li>
+          <a href="?path=${parent}">⬅️ ..</a>
+        </li>
+      `;
+    }
+
+    data.forEach(item => {
+      if (item.type === "dir") {
+        ul.innerHTML += `
+          <li class="folder">
+            📁 <a href="?path=${item.path}">${item.name}</a>
+          </li>
+        `;
+      } 
+      else if (item.type === "file" && item.name.endsWith(".html")) {
+        ul.innerHTML += `
+          <li>
+            📄 <a href="${item.path}">${item.name}</a>
+          </li>
+        `;
+      }
+    });
+  })
+  .catch(err => {
+    document.getElementById("list").innerHTML =
+      `<li>Error loading directory</li>`;
+    console.error(err);
+  });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>VAPT Reporting Tool – Report</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background-color: #f4f6f9;
+      color: #2c2c2c;
+    }
+
+    .container {
+      display: flex;
+      min-height: 100vh;
+    }
+
+    /* Sidebar */
+    .sidebar {
+      width: 240px;
+      background-color: #ffffff;
+      border-right: 1px solid #e0e0e0;
+      padding: 20px;
+    }
+
+    .sidebar h2 {
+      font-size: 18px;
+      margin-bottom: 30px;
+      color: #0a58ca;
+    }
+
+    .nav-item {
+      margin-bottom: 15px;
+      font-size: 14px;
+      cursor: pointer;
+      color: #444;
+    }
+
+    .nav-item:hover {
+      color: #0a58ca;
+    }
+
+    /* Main Content */
+    .main {
+      flex: 1;
+      padding: 30px;
+    }
+
+    .top-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .top-bar h3 {
+      font-size: 16px;
+      color: #333;
+    }
+
+    .download-btns button {
+      padding: 8px 14px;
+      font-size: 13px;
+      border-radius: 4px;
+      border: none;
+      cursor: pointer;
+      margin-left: 10px;
+    }
+
+    .pdf-btn {
+      background-color: #dc3545;
+      color: #fff;
+    }
+
+    .word-btn {
+      background-color: #0a58ca;
+      color: #fff;
+    }
+
+    .report-view {
+      background-color: #ffffff;
+      border-radius: 6px;
+      padding: 25px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+      font-size: 14px;
+      line-height: 1.7;
+    }
+
+    .section {
+      margin-bottom: 25px;
+    }
+
+    .section h4 {
+      font-size: 15px;
+      margin-bottom: 10px;
+      color: #0a58ca;
+    }
+
+    .meta {
+      font-size: 13px;
+      color: #555;
+      margin-bottom: 20px;
+    }
+
+    .severity {
+      font-weight: 600;
+    }
+
+    .high { color: #dc3545; }
+    .medium { color: #fd7e14; }
+    .low { color: #198754; }
+
+  </style>
+</head>
+<body>
+  <div class="container">
+    <aside class="sidebar">
+      <h2>VAPT Tool</h2>
+      <div class="nav-item">Dashboard</div>
+      <div class="nav-item">Vulnerabilities</div>
+      <div class="nav-item">Reports</div>
+      <div class="nav-item">Settings</div>
+    </aside>
+
+    <main class="main">
+      <div class="top-bar">
+        <h3>Generated VAPT Report</h3>
+        <div class="download-btns">
+          <button class="pdf-btn">Download PDF</button>
+          <button class="word-btn">Download Word</button>
+        </div>
+      </div>
+
+      <div class="report-view">
+        <div class="meta">
+          Target: example.com<br />
+          Assessment Type: Web Application VAPT<br />
+          Date: 15 Sep 2025<br />
+          Analyst: Security Team
+        </div>
+
+        <div class="section">
+          <h4>Executive Summary</h4>
+          <p>
+            This Vulnerability Assessment and Penetration Testing (VAPT) engagement was conducted to identify security weaknesses
+            in the target web application. The assessment focused on identifying common and critical web vulnerabilities based on
+            industry standards. The findings help stakeholders understand the current security posture and associated risks.
+          </p>
+        </div>
+
+        <div class="section">
+          <h4>Vulnerability Details</h4>
+          <p>
+            <strong>Vulnerability Name:</strong> SQL Injection<br />
+            <strong>Severity:</strong> <span class="severity high">High</span><br /><br />
+
+            <strong>Description:</strong><br />
+            The application fails to properly validate and sanitize user-supplied input before processing SQL queries. This allows
+            attackers to inject malicious SQL statements into application inputs.
+            <br /><br />
+
+            <strong>Impact:</strong><br />
+            Successful exploitation could allow an attacker to access, modify, or delete sensitive database information, leading
+            to data breaches and loss of application integrity.
+          </p>
+        </div>
+
+        <div class="section">
+          <h4>Proof of Concept (PoC)</h4>
+          <p>
+            The vulnerability was confirmed by submitting crafted SQL payloads through input parameters and observing abnormal
+            database responses. Error messages and unexpected query results indicated improper input handling.
+          </p>
+        </div>
+
+        <div class="section">
+          <h4>Remediation Recommendations</h4>
+          <p>
+            Implement parameterized queries and prepared statements for all database interactions. Enforce strict input validation
+            and sanitization. Use least-privilege database accounts and regularly review application logs for suspicious activity.
+          </p>
+        </div>
+
+        <div class="section">
+          <h4>Overall Risk Rating</h4>
+          <p>
+            Based on the identified findings, the overall risk rating for the target application is assessed as
+            <span class="severity high">High</span>. Immediate remediation of high and critical vulnerabilities is strongly recommended
+            to reduce potential attack surface.
+          </p>
+        </div>
+      </div>
+    </main>
+  </div>
+</body>
+</html>
